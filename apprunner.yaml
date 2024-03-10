@@ -1,0 +1,21 @@
+version: 1.0
+runtime: docker
+build:
+  commands:
+    - docker build -t backend ./backend
+    - docker build -t frontend ./frontend
+    - docker build -t nginx ./nginx
+run:
+  network:
+    port: 80
+  command: |
+    docker run -d --name backend backend
+    docker run -d --name frontend frontend
+    docker run -d --name nginx -p 80:80 nginx
+  environment:
+    - name: CHOKIDAR_USEPOLLING
+      value: "true"
+    - name: HOST
+      value: "0.0.0.0"
+  env_file:
+    - KEYs.env

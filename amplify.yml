@@ -3,7 +3,8 @@ backend:
   phases:
     build:
       commands:
-        - docker build -t your-backend-image ./backend
+        - docker build -t backend ./backend
+        - docker push 905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/backend:latest
   artifacts:
     baseDirectory: ./backend
     files:
@@ -16,7 +17,8 @@ frontend:
   phases:
     build:
       commands:
-        - docker build -t your-frontend-image ./frontend
+        - docker build -t frontend ./frontend
+        - docker push 905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/frontend:latest
   artifacts:
     baseDirectory: ./frontend
     files:
@@ -25,3 +27,14 @@ frontend:
       - package-lock.json
       - public/**/*
       - src/**/*
+nginx:
+  phases:
+    build:
+      commands:
+        - docker build -t nginx ./nginx
+        - docker push 905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/nginx:latest
+  artifacts:
+    baseDirectory: ./nginx
+    files:
+      - Dockerfile
+      - nginx.conf

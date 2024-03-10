@@ -5,21 +5,23 @@ backend:
       commands:
         - docker build -t your-backend-image ./backend
   artifacts:
+    baseDirectory: ./backend
     files:
-      - ./backend/Dockerfile
-      - ./backend/requirements.txt
-      - ./backend/application.py
-      - ./backend/cbfs.py
-      - ./KEYs.env
+      - Dockerfile
+      - requirements.txt
+      - application.py
+      - cbfs.py
+      - ../KEYs.env
 frontend:
   phases:
     build:
       commands:
         - docker build -t your-frontend-image ./frontend
   artifacts:
+    baseDirectory: ./frontend
     files:
-      - ./frontend/Dockerfile
-      - ./frontend/package.json
-      - ./frontend/package-lock.json
-      - ./frontend/public/**/*
-      - ./frontend/src/**/*
+      - Dockerfile
+      - package.json
+      - package-lock.json
+      - public/**/*
+      - src/**/*

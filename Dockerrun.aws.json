@@ -1,0 +1,44 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+      {
+        "name": "nginx",
+        "image": "905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/nginx:latest",
+        "essential": true,
+        "memory": 128,
+        "portMappings": [
+          {
+            "hostPort": 80,
+            "containerPort": 80
+          }
+        ],
+        "links": [
+          "frontend",
+          "backend"
+        ]
+      },
+      {
+        "name": "frontend",
+        "image": "905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/frontend:latest",
+        "essential": true,
+        "memory": 128
+      },
+      {
+        "name": "backend",
+        "image": "905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/backend:latest",
+        "essential": true,
+        "memory": 128,
+        "environment": [
+          {
+            "name": "CHOKIDAR_USEPOLLING",
+            "value": "true"
+          },
+          {
+            "name": "HOST",
+            "value": "0.0.0.0"
+          }
+        ]
+      }
+    ]
+  }
+  

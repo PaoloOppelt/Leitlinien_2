@@ -5,7 +5,7 @@ backend:
       runtime: docker
       image: aws/codebuild/standard:5.0
       commands:
-        - docker build -t backend ./backend
+        # - docker build -t backend ./backend
         - docker push 905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/backend:latest
   artifacts:
     baseDirectory: ./backend

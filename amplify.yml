@@ -2,6 +2,8 @@ version: 1
 backend:
   phases:
     build:
+      runtime: docker
+      image: aws/codebuild/standard:5.0
       commands:
         - docker build -t backend ./backend
         - docker push 905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/backend:latest
@@ -16,6 +18,8 @@ backend:
 frontend:
   phases:
     build:
+      runtime: docker
+      image: aws/codebuild/standard:5.0
       commands:
         - docker build -t frontend ./frontend
         - docker push 905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/frontend:latest
@@ -30,6 +34,8 @@ frontend:
 nginx:
   phases:
     build:
+      runtime: docker
+      image: aws/codebuild/standard:5.0
       commands:
         - docker build -t nginx ./nginx
         - docker push 905418337664.dkr.ecr.eu-central-1.amazonaws.com/leitliniengpt_prod/nginx:latest

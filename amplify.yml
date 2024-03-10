@@ -1,0 +1,25 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - docker build -t your-backend-image ./backend
+  artifacts:
+    files:
+      - ./backend/Dockerfile
+      - ./backend/requirements.txt
+      - ./backend/application.py
+      - ./backend/cbfs.py
+      - ./KEYs.env
+frontend:
+  phases:
+    build:
+      commands:
+        - docker build -t your-frontend-image ./frontend
+  artifacts:
+    files:
+      - ./frontend/Dockerfile
+      - ./frontend/package.json
+      - ./frontend/package-lock.json
+      - ./frontend/public/**/*
+      - ./frontend/src/**/*
